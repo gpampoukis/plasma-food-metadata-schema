@@ -1,0 +1,115 @@
+{
+  "plasma_source": {
+    "source_properties": {
+      "geometry_settings": {
+        "geometry_description": "DBD plasma reactor treats the sample between two circular electrodes; a circular dielectric barrier covers the upper electrode. The diameter of the electrodes, as well as the diameter and thickness of the dielectric barrier, were measured.",
+        "upper_electrode_diameter": 5.5,
+        "ground_electrode_diameter": 5.5,
+        "dielectric_barrier_diameter": 7.5,
+        "dielectric_barrier_thickness": 0.1,
+        "electrode_distance_[cm]": 0.8,
+        "upper_electrode_material": "Stainless steel",
+        "ground_electrode_material": "Stainless steel",
+        "dielectric_material": "Glass"
+      },
+      "power_supply_settings": {
+        "power_supply": "AC",
+        "waveform": "sinusoidal",
+        "input_power": 30,
+        "peak_to_peak_discharge_voltage": 9,
+        "frequency": 9
+      },
+      "source_settings": {
+        "discharge_current": 0.01,
+        "dissipated_power": 25,
+        "specific_energy_input": 300
+      }
+    },
+    "source_procedure": {
+      "standardization_procedures": {
+        "waiting_time": 5
+      }
+    }
+  },
+  "plasma_medium": {
+    "medium_properties": {
+      "gas_properties": {
+        "gas_description": "The plasma medium (gas) was ambient air without any further treatment or precursors.",
+        "pressure": 101325,
+        "flow_rate": 4,
+        "temperature": 35,
+        "humidity": 40
+      },
+      "liquid_properties": {
+        "stirring": "yes"
+      }
+    }
+  },
+  "plasma_target": {
+    "target_properties": {
+      "food_related_parameters": {
+        "matrix_description": "The target matrix was black peppercorns bought from a local supermarket and sterilized before treatment.",
+        "surface_temperature": 30,
+        "weight": 5,
+        "food_shape": "spherical",
+        "dimensions": "~0.5 diameter",
+        "aw": 0.6,
+        "ph": 5.5,
+        "fat_percentage": 3,
+        "protein_content": 10
+      },
+      "microbial_related_parameters": {
+        "microbial_form": "Vegetative bacteria",
+        "genus": "Salmonella",
+        "species": "enterica",
+        "serotype": "Typhimurium",
+        "single-_or_multi-culture": "single-culture",
+        "strain": "LMG 14933",
+        "growth_medium_before_and_after_treatment": "From -80°C, the stock culture was grown in Tryptic Soy Agar (TSA) for 48 h and then a single colony was inoculated to  Tryptic Soy Broth (TSB). TSA was used for the enumeration after treatment.",
+        "incubation_time_before_treatment": 24,
+        "incubation_temperature": 37,
+        "growth_stage": "stationary",
+        "mode_of_inoculation": "mixing",
+        "inoculation_procedure": "1 ml of the initial inoculum of known concentration was mixed with the treatment matrix and let dry for 30 min at room temperature.",
+        "microbial_counts_before_treatment": 8,
+        "enumeration_/_quantification_procedure": "Samples were immediately analyzed after treatment through homogenization with physiological salt solution (PPS) followed by serial dilution. A 0.1 ml aliquot of each dilution was plated on TSA, and incubated.",
+        "incubation_time_after_treatment": 48,
+        "microbial_counts_after_treatment": 1.5
+      }
+    },
+    "target_procedure": {
+      "target_treatment": {
+        "mode_of_treatment": "direct",
+        "spatial_location_relative_to_the_plasma_source": "The peppercorns were placed directly between the two electrodes of the DBD device. The product was exposed simultaneously to plasma-generated reactive species, charged particles, and UV / VUV irradiation emitted uniformly from the electrode surfaces.",
+        "target_treatment_time": 5
+      }
+    }
+  },
+  "plasma_diagnostics": {
+    "diagnostic_properties": {
+      "diagnostic_settings": {
+        "setting_description": "RONS in the plasma-processed medium were determined with FTIR spectroscopy with the following settings: absorption path length 0.25m, resolution 0.6 cm⁻¹, wavenumber range of 4000 – 400 cm⁻¹, 64 scans in each measurement."
+      },
+      "environmental_parameters": {
+        "temperature": 22,
+        "humidity": 40,
+        "pressure": 101325
+      }
+    },
+    "diagnostics_procedure": {
+      "diagnostic_methodology": {
+        "methodology_description": "After the plasma discharge reached steady-state conditions, FTIR measurements of reactive species were conducted in the gas phase adjacent to the peppercorns placed between the electrodes, using a device (specify brand and model).",
+        "location_of_the_diagnostic_application": "The plasma gas phase was sampled 1 cm above the peppercorn surface, within the discharge region between the two electrodes.",
+        "targets_of_quantitative_qualitative_analysis": "Hydrogen peroxide (H₂O₂), Ozone (O₃), Nitrate (NO), Nitrite (NO₂). FTIR spectroscopy, specific peak centers: 1400 cm⁻¹ and 876 cm⁻¹ for H₂O₂; 1050 cm⁻¹ for O₃; 1875 cm⁻¹ for NO; and 1600 cm⁻¹ and 2900 cm⁻¹ for NO₂.",
+        "quantification_method": "Calibration curves based on known standards for H₂O₂, O₃, NO, NO₂.",
+        "h2o2": 0.00016,
+        "o3": 0.00204,
+        "no": 0.00012,
+        "no2": 0.0000408
+      },
+      "data_processing": {
+        "data_processing_description": "Spectral deconvolution and baseline correction using a data analysis software (specify), and Savitzky-Golay smoothing. Peaks were identified via an atomic spectra database (specify)."
+      }
+    }
+  }
+}

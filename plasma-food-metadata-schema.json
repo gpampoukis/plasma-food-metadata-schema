@@ -1,0 +1,498 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://www.plasma-mds.org/schema/plasma-mds.json#",
+  "title": "Plasma Metadata Schema (Plasma-MDS)",
+  "description": "Metadata schema for annotation of research data (datasets) in the field of plasma science and technology. Aims to be attached to generic schemata like DCAT or DataCite Metadata Schema. Validates a Plasma-MDS extension.",
+  "type": "object",
+  "properties": {
+    "plasma_source": {
+      "title": "Plasma source",
+      "description": "",
+      "properties": {
+        "source_properties": {
+          "title": "Source properties",
+          "description": "",
+          "properties": {
+            "geometry_settings": {
+              "title": "Geometry settings",
+              "description": "Object including all attributes defining the configuration of the plasma setup such as the type of plasma device used (e.g., DBD, plasma jet, corona discharge, etc.), its physical shape, structure, dimensions, and materials.",
+              "properties": {
+                "geometry_description": {
+                  "type": "string",
+                  "title": "Geometry description",
+                  "description": "Free text description of the source geometry and materials."
+                }
+              },
+              "type": "object"
+            },
+            "power_supply_settings": {
+              "type": "object",
+              "title": "Power supply settings",
+              "description": "Object including all attributes defining the electrical power supply used in plasma generation.",
+              "properties": {
+                "power_supply": {
+                  "title": "Power supply [AC, DC]",
+                  "description": "The electrical power used to generate the plasma.",
+                  "type": "string",
+                  "enum": [
+                    "AC",
+                    "DC"
+                  ]
+                },
+                "waveform": {
+                  "type": "string",
+                  "title": "Waveform [sinusoidal, square, ramp, pulse, arbitrary]",
+                  "description": "The shape of the electrical signal.",
+                  "enum": [
+                    "sinusoidal",
+                    "square",
+                    "ramp",
+                    "pulse",
+                    "arbitrary"
+                  ]
+                },
+                "input_power": {
+                  "type": "number",
+                  "title": "Input power [W]",
+                  "description": "Total power supplied to the plasma system."
+                },
+                "peak_to_peak_discharge_voltage": {
+                  "type": "number",
+                  "title": "Peak-to-peak discharge voltage [kV]",
+                  "description": "The voltage difference between the highest and lowest points of the discharge."
+                },
+                "frequency": {
+                  "type": "number",
+                  "title": "Frequency [kHz]",
+                  "description": "Frequency of the electrical discharge."
+                }
+              }
+            },
+            "source_settings": {
+              "type": "object",
+              "title": "Source settings",
+              "description": "Object including all attributes of the plasma source used to generate the desired plasma.",
+              "properties": {
+                "discharge_current": {
+                  "type": "number",
+                  "title": "Discharge current [A]",
+                  "description": "Current passing through the plasma discharge."
+                },
+                "dissipated_power": {
+                  "type": "number",
+                  "title": "Dissipated power [W]",
+                  "description": "Power actually used by the plasma discharge, excluding losses."
+                },
+                "specific_energy_input": {
+                  "title": "Specific energy input [J/cm³]",
+                  "description": "Energy supplied per unit volume of the treated medium.",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "source_procedure": {
+          "title": "Source procedure",
+          "description": "",
+          "properties": {
+            "standardization_procedures": {
+              "type": "object",
+              "title": "Standardization procedures",
+              "description": "Object including all attributes defining how the plasma source is standardized to ensure consistency across experimental runs.",
+              "properties": {
+                "waiting_time": {
+                  "title": "Waiting time [min]",
+                  "description": "The time needed to reach a stable plasma state before starting the treatment.",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "plasma_medium": {
+      "title": "Plasma medium",
+      "description": "",
+      "properties": {
+        "medium_properties": {
+          "type": "object",
+          "title": "Medium properties",
+          "description": "",
+          "properties": {
+            "gas_properties": {
+              "type": "object",
+              "title": "Gas properties",
+              "description": "Object including all attributes defining the carrier gas.",
+              "properties": {
+                "gas_description": {
+                  "type": "string",
+                  "title": "Gas description",
+                  "description": "Free text description of the carrier gas."
+                },
+                "pressure": {
+                  "type": "number",
+                  "title": "Pressure [Pa]",
+                  "description": "Pressure of the carrier gas during plasma operation."
+                },
+                "flow_rate": {
+                  "type": "number",
+                  "title": "Flow rate [L/min]",
+                  "description": "The rate at which the gas is supplied to the plasma source."
+                },
+                "carrier_gas_composition": {
+                  "title": "Carrier gas composition",
+                  "description": "The type and composition of the gas mixture used in the plasma (e.g., 90% N₂, 10% O₂).",
+                  "type": "string"
+                },
+                "purity": {
+                  "type": "number",
+                  "title": "Purity [%]",
+                  "description": "Purity level of the gases used (e.g., 99.99% purity)."
+                },
+                "temperature": {
+                  "type": "number",
+                  "title": "Temperature [°C]",
+                  "description": "Temperature of the gas during plasma operation."
+                },
+                "humidity": {
+                  "type": "number",
+                  "title": "Humidity [% RH]",
+                  "description": "Relative humidity level of the plasma medium."
+                }
+              }
+            },
+            "precursor_properties": {
+              "type": "object",
+              "title": "Precursor properties (where applicable)",
+              "description": "Object including all attributes defining the presence of any precursors or added compounds in the plasma medium.",
+              "properties": {
+                "precursor_description": {
+                  "type": "string",
+                  "title": "Precursor description",
+                  "description": "Free text description of the precursor added in the carrier gas."
+                },
+                "amount_of_precursor": {
+                  "type": "number",
+                  "title": "Amount of precursor added to the medium [ml or g]",
+                  "description": "Quantity of the precursor added to the plasma medium."
+                }
+              }
+            },
+            "liquid_properties": {
+              "type": "object",
+              "title": "Liquid properties (where applicable)",
+              "description": "Object including all attributes defining the plasma-treated liquid.",
+              "properties": {
+                "liquid_description": {
+                  "type": "string",
+                  "title": "Liquid description",
+                  "description": "Free text description of the liquid being treated by the plasma."
+                },
+                "volume": {
+                  "type": "number",
+                  "title": "Volume [L]",
+                  "description": "The volume of the liquid being treated."
+                },
+                "distance": {
+                  "type": "number",
+                  "title": "Distance [cm]",
+                  "description": "The distance between the plasma source and the liquid surface."
+                },
+                "stirring": {
+                  "type": "string",
+                  "title": "Stirring [yes, no]",
+                  "description": "Indicates whether the liquid was stirred during plasma treatment.",
+                  "enum": [
+                    "yes",
+                    "no"
+                  ]
+                },
+                "ph": {
+                  "type": "number",
+                  "title": "pH",
+                  "description": "The pH level of the liquid before and after treatment."
+                },
+                "oxidation_reduction_potential": {
+                  "title": "Oxidation-reduction potential [mV]",
+                  "description": "The oxidation-reduction potential of the liquid.",
+                  "type": "number"
+                },
+                "minimum_conductivity": {
+                  "type": "number",
+                  "title": "Minimum conductivity [S/m]",
+                  "description": "The minimum electrical conductivity needed for plasma ignition."
+                },
+                "conductivity": {
+                  "type": "number",
+                  "title": "Conductivity [S/m]",
+                  "description": "The electrical conductivity of the liquid."
+                },
+                "treatment_time": {
+                  "type": "number",
+                  "title": "Treatment time [min]",
+                  "description": "The duration for which the plasma source was applied to treat the liquid, creating a plasma-treated liquid (PTL) intended for subsequent decontamination purposes."
+                },
+                "reactive_oxygen_and_nitrogen_species": {
+                  "type": "string",
+                  "title": "Reactive oxygen and nitrogen species",
+                  "description": "Free text description of the reactive oxygen and nitrogen species measured in the plasma liquid (e.g., hydroxyl radical, hydrogen peroxide, nitric oxide, nitrite, nitrate)."
+                },
+                "temperature": {
+                  "type": "number",
+                  "title": "Temperature [°C]",
+                  "description": "The temperature of the liquid during plasma treatment."
+                }
+              }
+            }
+          }
+        },
+        "medium_procedure": {
+          "type": "object",
+          "title": "Medium procedure",
+          "description": "",
+          "properties": {
+            "medium_treatment": {
+              "type": "object",
+              "title": "Medium treatment",
+              "description": "Object including all attributes defining the plasma medium.",
+              "properties": {
+                "medium_modification": {
+                  "title": "Medium modification (where applicable)",
+                  "description": "The way the medium was modified before the plasma generation (e.g., humidification of the carrier gas).",
+                  "type": "string"
+                },
+                "medium_treatment_time": {
+                  "type": "number",
+                  "title": "Medium treatment time (where applicable) [min]",
+                  "description": "The treatment time in which the medium (gas, liquid, or both) is treated by a plasma source that will then be used to treat a target. Only applicable in the indirect mode of treatment."
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "plasma_target": {
+      "title": "Plasma target",
+      "description": "",
+      "properties": {
+        "target_properties": {
+          "type": "object",
+          "title": "Target properties",
+          "description": "",
+          "properties": {
+            "food_related_parameters": {
+              "type": "object",
+              "title": "Food-related parameters",
+              "description": "Object including all attributes defining the food matrix, the packaging material, or the food processing surface being treated.",
+              "properties": {
+                "matrix_description": {
+                  "type": "string",
+                  "title": "Matrix description",
+                  "description": "Free text description of the matrix being treated."
+                },
+                "distance_to_surface": {
+                  "type": "number",
+                  "title": "Distance to surface [cm]",
+                  "description": "The distance from the plasma source to the target surface."
+                },
+                "surface_temperature": {
+                  "type": "number",
+                  "title": "Surface temperature [°C]",
+                  "description": "The temperature of the target surface during plasma treatment."
+                }
+              }
+            },
+            "microbial_related_parameters": {
+              "type": "object",
+              "title": "Microbial-related parameters",
+              "description": "Object including all attributes defining the microbial properties of the target.",
+              "properties": {}
+            }
+          }
+        },
+        "target_procedure": {
+          "type": "object",
+          "title": "Target procedure",
+          "description": "",
+          "properties": {
+            "target_treatment": {
+              "type": "object",
+              "title": "Target treatment",
+              "description": "Object including all attributes defining the methodology followed to treat the target.",
+              "properties": {
+                "mode_of_treatment": {
+                  "type": "string",
+                  "title": "Mode of treatment [direct, indirect]",
+                  "description": "Specifies whether the plasma treatment was applied to the target in direct (UV / VUV irradiation, plasma particles) or indirect (plasma-processed gas / plasma-treated liquid) way.",
+                  "enum": [
+                    "direct",
+                    "indirect"
+                  ]
+                },
+                "spatial_location_relative_to_the_plasma_source": {
+                  "title": "Spatial location relative to the plasma source",
+                  "description": "Free text description of the spatial position of the target with respect to the electrodes or the plasma source geometry (how the target is exposed to the plasma medium (UV / VUV irradiation, plasma particles, plasma-processed gas / plasma-treated liquid)).",
+                  "type": "string"
+                },
+                "target_treatment_time": {
+                  "type": "number",
+                  "title": "Target treatment time [min]",
+                  "description": "The duration for which the plasma medium was applied to the target matrix. For direct treatments the medium treatment time and the target treatment time match."
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "plasma_diagnostics": {
+      "title": "Plasma diagnostics",
+      "description": "",
+      "properties": {
+        "diagnostic_properties": {
+          "title": "Diagnostics properties",
+          "description": "",
+          "type": "object",
+          "properties": {
+            "diagnostic_settings": {
+              "type": "object",
+              "title": "Diagnostic settings",
+              "description": "Object including all attributes defining the diagnostic method used to assess plasma source-, medium-, or target-related properties.",
+              "properties": {
+                "setting_description": {
+                  "title": "Setting description",
+                  "description": "Free text description of the diagnostic settings (e.g., spectroscopy settings, sensor calibration).",
+                  "type": "string"
+                }
+              }
+            },
+            "environmental_parameters": {
+              "type": "object",
+              "title": "Environmental parameters",
+              "description": "Object including all attributes defining the conditions in the measurement chamber during diagnostics (e.g., humidity, temperature, pressure).",
+              "properties": {
+                "temperature": {
+                  "type": "number",
+                  "title": "Temperature [°C]",
+                  "description": "The temperature of the processing environment."
+                },
+                "humidity": {
+                  "type": "number",
+                  "title": "Humidity [% RH]",
+                  "description": "Relative humidity of the processing environment."
+                },
+                "pressure": {
+                  "type": "number",
+                  "title": "Pressure [Pa]",
+                  "description": "The pressure of the processing environment."
+                }
+              }
+            }
+          }
+        },
+        "diagnostics_procedure": {
+          "title": "Diagnostics procedure",
+          "description": "",
+          "type": "object",
+          "properties": {
+            "diagnostic_methodology": {
+              "type": "object",
+              "title": "Diagnostic methodology",
+              "description": "Object including all attributes defining the experimental setup of the diagnostic procedures implemented, such as location, targets, and quantification methods.",
+              "properties": {
+                "methodology_description": {
+                  "title": "Methodology description",
+                  "description": "Free text description of the experimental setup of the diagnostic procedures.",
+                  "type": "string"
+                },
+                "location_of_the_diagnostic_application": {
+                  "title": "Location of the diagnostic application",
+                  "description": "The specific location where the diagnostic method was applied (e.g., on the plasma source, in the plasma medium, on the target).",
+                  "type": "string"
+                },
+                "Targets_of_qualitative_/_quantitative_analysis": {
+                  "title": "Targets of qualitative / quantitative analysis",
+                  "description": "The specific components being analyzed (e.g., reactive species, target surface properties).",
+                  "type": "string"
+                },
+                "quantification_method": {
+                  "type": "string",
+                  "title": "Quantification method",
+                  "description": "The technique used for the quantification of the analytes (e.g., simulation with online databases, calibration curves using standards, machine built-in library, sensor direct output). For direct outputs, the limit of detection (LOD) should be mentioned."
+                }
+              }
+            },
+            "data_processing": {
+              "type": "object",
+              "title": "Data processing",
+              "description": "Object including all attributes defining how raw data were processed and analyzed.",
+              "properties": {
+                "data_processing_description": {
+                  "type": "string",
+                  "title": "Data processing description",
+                  "description": "Free text description of the data processing and analysis procedures (e.g., spectral deconvolution, data smoothing, software used for data interpretation)."
+                }
+              }
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "resource": {
+      "title": "Resource",
+      "description": "Digital object obtained by diagnostics",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "UUID",
+            "description": "System UUID for object identification.",
+            "type": "string"
+          },
+          "url": {
+            "title": "URL",
+            "description": "Download link (URL) of the resource.",
+            "type": "string"
+          },
+          "filetype": {
+            "title": "Resource Filetype",
+            "description": "File type of the resource. Examples: csv, pdf, png, txt.",
+            "type": "string"
+          },
+          "datatype": {
+            "title": "Resource Datatype",
+            "description": "Data type of the resource. Examples: data table, SEM image, cfu-plot, high-speed video.",
+            "type": "string"
+          },
+          "range": {
+            "title": "Resource Range",
+            "description": "Range in which the resource is valid. Example: wavelength range: 400-800 nm.",
+            "type": "string"
+          },
+          "quality": {
+            "title": "Resource Quality",
+            "description": "Data quality score. One of: verified, published, reviewed.",
+            "type": "string",
+            "enum": [
+              "verified",
+              "published",
+              "reviewed"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}
