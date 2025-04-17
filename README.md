@@ -6,13 +6,13 @@
 ## About this repository
 This repository accompanies the manuscript **“A metadata schema to standardize non-thermal plasma decontamination parameters in food-related applications.”** It contains two JSON files that implement a metadata schema designed to promote FAIR (findable, accessible, interoperable, and reusable) data principles in non-thermal plasma decontamination experiments in food-related applications.
 
-The metadata schema was developed using [Adamant](https://plasma-mds.github.io/adamant/), a JSON schema-based metadata editor for research data management workflows. By providing a structured way to describe the relevant parameters, the repository aims to support reproducibility, comparability, and broader data integration across studies.
+The metadata schema is based on [Plasma-MDS](https://doi.org/10.1038/s41597-020-00771-0) and was developed using [Adamant](https://doi.org/10.12688/f1000research.110875.2), a JSON schema-based metadata editor for research data management workflows. By providing a structured way to describe the relevant parameters, the repository aims to support reproducibility, comparability, and broader data integration across studies.
 
 ## Files Overview
 
 1. **Full metadata schema**
    - **Filename:** `plasma-food-metadata-schema.json`  
-   - **Description:** A single, integrated JSON schema that includes all relevant parameter categories (e.g., plasma source, plasma medium, plasma target, and plasma diagnostics) for describing non-thermal plasma decontamination experiments.
+   - **Description:** A single, integrated JSON schema that includes all relevant parameter categories (e.g., plasma source, plasma medium, plasma target, and plasma diagnostics) for describing non-thermal plasma decontamination experiments in food-related applications.
 
 2. **Example case study**
    - **Filename:** `plasma-food-metadata-case-study.json`  
@@ -21,10 +21,10 @@ The metadata schema was developed using [Adamant](https://plasma-mds.github.io/a
 ## How to Use These Files
 
 1. **As a Reference or Template**  
-   Use the metadata schema (`plasma_metadata_schema.json`) as a framework to structure and describe your own non-thermal plasma experiments.
+   Use the metadata schema (`plasma_metadata_schema.json`) as a framework to structure and describe your own non-thermal plasma experiments using [Adamant](https://plasma-mds.github.io/adamant) or any other tool.
 
 2. **Explore the Example**  
-   Consult the case study (`plasma_example_case_study.json`) to see how each parameter is utilized in an actual experimental setup, offering guidance on how to provide and format information in the schema.
+   Consult the case study (`plasma_example_case_study.json`) to see how each parameter is utilized in an actual experimental setup, offering guidance on how to provide and format information in the schema. This exemplary JSON data can be loaded directly into adamant to populate the attributes of the schema element after loading the schema file.
 
 ## Contact
 For inquiries or feedback, please reach out to:
