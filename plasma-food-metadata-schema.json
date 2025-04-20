@@ -1,17 +1,43 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "https://www.plasma-mds.org/schema/plasma-mds.json#",
-  "title": "Plasma Metadata Schema (Plasma-MDS)",
-  "description": "Metadata schema for annotation of research data (datasets) in the field of plasma science and technology. Aims to be attached to generic schemata like DCAT or DataCite Metadata Schema. Validates a Plasma-MDS extension.",
+  "id": "https://raw.githubusercontent.com/plasma-mds/plasma-food-metadata-schema/refs/heads/main/plasma-food-metadata-schema.json#",
+  "title": "Plasma Food Metadata Schema",
+  "description": "Metadata schema to standardize non-thermal plasma decontamination parameters in food-related applications.",
   "type": "object",
   "properties": {
-    "plasma_source": {
-      "title": "Plasma source",
-      "description": "",
+    "id": {
+      "title": "UUID",
+      "description": "System UUID for object identification.",
+      "type": "string"
+    },
+    "url": {
+      "title": "URL",
+      "description": "Landing page (URL) of the dataset.",
+      "type": "string"
+    },
+    "source": {
+      "title": "Plasma Source",
+      "description": "Device which creates the plasma by (partially) ionizing a given medium.",
+      "type": "object",
       "properties": {
-        "source_properties": {
-          "title": "Source properties",
-          "description": "",
+        "name": {
+          "title": "Source Name",
+          "description": "Name and/or type of the plasma source used in the study. Examples: kINPen, COST Jet, CCP.",
+          "type": "string"
+        },
+        "application": {
+          "title": "Source Application",
+          "description": "Application the plasma source is used for. Examples: decontamination, PECVD, etching.",
+          "type": "string"
+        },
+        "specification": {
+          "title": "Source Specification",
+          "description": "Technical specification of the plasma source (waveform, frequency range, pressure range, temperature range).",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Source Properties",
+          "description": "Properties of the plasma source.",
           "properties": {
             "geometry_settings": {
               "title": "Geometry settings",
@@ -93,9 +119,9 @@
           },
           "type": "object"
         },
-        "source_procedure": {
-          "title": "Source procedure",
-          "description": "",
+        "procedure": {
+          "title": "Source Procedure",
+          "description": "Procedure to prepare and use the plasma source.",
           "properties": {
             "standardization_procedures": {
               "type": "object",
@@ -113,16 +139,24 @@
           "type": "object"
         }
       },
-      "type": "object"
+      "required": [
+        "properties",
+        "procedure"
+      ]
     },
-    "plasma_medium": {
-      "title": "Plasma medium",
-      "description": "",
+    "medium": {
+      "title": "Plasma Medium",
+      "description": "Gas, mixture of gases, or other substance, which is either (partially) ionized or otherwise activated by a source device.",
+      "type": "object",
       "properties": {
-        "medium_properties": {
-          "type": "object",
-          "title": "Medium properties",
-          "description": "",
+        "name": {
+          "title": "Medium Name",
+          "description": "Name of the medium the plasma source is operated in. Examples: dry air, Ar, CO2, water.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Medium Properties",
+          "description": "Properties of the medium.",
           "properties": {
             "gas_properties": {
               "type": "object",
@@ -249,12 +283,12 @@
                 }
               }
             }
-          }
+          },
+          "type": "object"
         },
-        "medium_procedure": {
-          "type": "object",
-          "title": "Medium procedure",
-          "description": "",
+        "procedure": {
+          "title": "Medium Procedure",
+          "description": "Standard procedure to prepare the medium (pre-treatment).",
           "properties": {
             "medium_treatment": {
               "type": "object",
@@ -273,19 +307,28 @@
                 }
               }
             }
-          }
+          },
+          "type": "object"
         }
       },
-      "type": "object"
+      "required": [
+        "procedure",
+        "properties"
+      ]
     },
-    "plasma_target": {
-      "title": "Plasma target",
-      "description": "",
+    "target": {
+      "title": "Plasma Target",
+      "description": "Substrate the plasma acts on, directly (target is/was in contact with a plasma) or mediated by an additional substance.",
+      "type": "object",
       "properties": {
-        "target_properties": {
-          "type": "object",
-          "title": "Target properties",
-          "description": "",
+        "name": {
+          "title": "Target Name",
+          "description": "Name of the target name the plasma source is acting on either directly or mediated by the above named medium. Examples: Si waver, distilled water, Escherichia coli.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Target Properties",
+          "description": "Properties of the target.",
           "properties": {
             "food_related_parameters": {
               "type": "object",
@@ -315,12 +358,13 @@
               "description": "Object including all attributes defining the microbial properties of the target.",
               "properties": {}
             }
-          }
+          },
+          "type": "object"
         },
-        "target_procedure": {
+        "procedure": {
+          "title": "Target Procedure",
+          "description": "Standard procedure to prepare the target.",
           "type": "object",
-          "title": "Target procedure",
-          "description": "",
           "properties": {
             "target_treatment": {
               "type": "object",
@@ -351,15 +395,24 @@
           }
         }
       },
-      "type": "object"
+      "required": [
+        "properties",
+        "procedure"
+      ]
     },
-    "plasma_diagnostics": {
-      "title": "Plasma diagnostics",
-      "description": "",
+    "diagnostics": {
+      "title": "Diagnostics",
+      "description": "Measurement, modeling, or simulation method used to produce the digital resource.",
+      "type": "object",
       "properties": {
-        "diagnostic_properties": {
-          "title": "Diagnostics properties",
-          "description": "",
+        "name": {
+          "title": "Diagnostics Name",
+          "description": "Name of the applied diagnostics and/or modelling/simulation methods. Examples: OES, SEM, PIC-MCC.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Diagnostics Properties",
+          "description": "Details of the applied diagnostics.",
           "type": "object",
           "properties": {
             "diagnostic_settings": {
@@ -398,9 +451,9 @@
             }
           }
         },
-        "diagnostics_procedure": {
-          "title": "Diagnostics procedure",
-          "description": "",
+        "procedure": {
+          "title": "Diagnostics Procedure",
+          "description": "Description of the diagnostic procedure.",
           "type": "object",
           "properties": {
             "diagnostic_methodology": {
@@ -445,7 +498,10 @@
           }
         }
       },
-      "type": "object"
+      "required": [
+        "properties",
+        "procedure"
+      ]
     },
     "resource": {
       "title": "Resource",
