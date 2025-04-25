@@ -641,7 +641,8 @@
                             "enum": [
                               "ATCC",
                               "DSM",
-                              "NCTC"
+                              "NCTC",
+                              "LMG"
                             ]
                           }
                         }
@@ -766,7 +767,8 @@
                             "enum": [
                               "ATCC",
                               "DSM",
-                              "NCTC"
+                              "NCTC",
+                              "LMG"
                             ]
                           }
                         }
@@ -907,7 +909,8 @@
                             "enum": [
                               "ATCC",
                               "DSM",
-                              "NCTC"
+                              "NCTC",
+                              "LMG"
                             ]
                           }
                         }
@@ -946,10 +949,10 @@
                       "description": "",
                       "type": "string",
                       "enum": [
-                        "Lag phase",
-                        "Exponential phase",
-                        "Stationary phase",
-                        "Death phase"
+                        "lag phase",
+                        "exponential phase",
+                        "stationary phase",
+                        "death phase"
                       ]
                     },
                     "mode_of_inoculation": {
@@ -1121,7 +1124,7 @@
                 "quantification_method": {
                   "type": "string",
                   "title": "Quantification method",
-                  "description": "The technique used for the quantification of the analytes (e.g., simulation with online databases, calibration curves using standards, machine built-in library, sensor direct output). For direct outputs, the limit of detection (LOD) should be mentioned."
+                  "description": "The technique used for the quantification of the analytes (e.g., simulation with online databases, calibration curves using standards, machine built-in library, sensor direct output). For direct outputs, the limit of detection (LOD) should be provided."
                 }
               }
             },
