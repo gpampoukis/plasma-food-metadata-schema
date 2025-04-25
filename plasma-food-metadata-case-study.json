@@ -80,7 +80,7 @@
           "species": "enterica",
           "serotype": "Typhimurium",
           "culture_type": "single-culture",
-          "strainIdentification": [
+          "strain_identification": [
             {
               "strain_identifier_type": "LMG",
               "strain_identifier": "14933"
