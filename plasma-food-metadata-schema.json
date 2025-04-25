@@ -623,7 +623,7 @@
                         "multi-culture"
                       ]
                     },
-                    "strainIdentification": {
+                    "strain_identification": {
                       "title": "Strain identification",
                       "description": "",
                       "items": {
