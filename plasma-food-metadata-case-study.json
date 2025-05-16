@@ -49,7 +49,7 @@
       },
       "liquid_properties": {
         "liquid_description": "Not applicable.",
-        "stirring": "yes"
+        "stirring": "NA"
       }
     },
     "procedure": {
@@ -82,8 +82,8 @@
           "culture_type": "single-culture",
           "strain_identification": [
             {
-              "strain_identifier_type": "LMG",
-              "strain_identifier": "14933"
+              "strain_identifier": "14933",
+              "strain_identifier_type": "LMG"
             }
           ],
           "growth_medium_before_treatment": "From -80°C, the stock culture was grown in Tryptic Soy Agar (TSA) for 48 h and then a single colony was inoculated to  Tryptic Soy Broth (TSB). TSA was used for the enumeration after treatment.",
@@ -99,15 +99,15 @@
           "enumeration/quantification_procedure": "Samples were immediately analyzed after treatment through homogenization with physiological salt solution (PPS) followed by serial dilution. A 0.1 ml aliquot of each dilution was plated on TSA, and incubated."
         },
         "bacterial_cells/spores_in_biofilms_related_parameters": {
-          "culture_type": "single-culture",
-          "growth_stage": "lag phase",
-          "mode_of_inoculation": "spraying"
+          "culture_type": "NA",
+          "growth_stage": "NA",
+          "mode_of_inoculation": "NA"
         },
         "yeasts_and_molds_related_parameters": {
-          "culture_type": "single-culture",
-          "growth_stage": "lag phase",
-          "mode_of_inoculation": "spraying",
-          "ascospores_or_endospores": "ascospores"
+          "culture_type": "NA",
+          "growth_stage": "NA",
+          "mode_of_inoculation": "NA",
+          "ascospores_or_endospores": "NA"
         }
       }
     },
@@ -136,7 +136,7 @@
         "methodology_description": "After the plasma discharge reached steady-state conditions, FTIR measurements of reactive species were conducted in the gas phase adjacent to the peppercorns placed between the electrodes, using a device (specify brand and model).",
         "location_of_the_diagnostic_application": "The plasma gas phase was sampled 1 cm above the peppercorn surface, within the discharge region between the two electrodes.",
         "Targets_of_qualitative_/_quantitative_analysis": "Hydrogen peroxide (H₂O₂), Ozone (O₃), Nitrate (NO), Nitrite (NO₂). FTIR spectroscopy, specific peak centers: 1400 cm⁻¹ and 876 cm⁻¹ for H₂O₂; 1050 cm⁻¹ for O₃; 1875 cm⁻¹ for NO; and 1600 cm⁻¹ and 2900 cm⁻¹ for NO₂.",
-        "quantification_method": "Calibration curves based on known standards for H₂O₂, O₃, NO, NO",
+        "quantification_method": "Calibration curves based on known standards for H₂O₂, O₃, NO, NO₂.",
         "h2o2": 0.00016,
         "o3": 0.00204,
         "no": 0.00012,
