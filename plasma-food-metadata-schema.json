@@ -60,21 +60,25 @@
                   "title": "Power supply [AC, DC]",
                   "description": "The electrical power used to generate the plasma.",
                   "type": "string",
+                  "default": "NA",
                   "enum": [
                     "AC",
-                    "DC"
+                    "DC",
+                    "NA"
                   ]
                 },
                 "waveform": {
-                  "type": "string",
                   "title": "Waveform [sinusoidal, square, ramp, pulse, arbitrary]",
                   "description": "The shape of the electrical signal.",
+                  "type": "string",
+                  "default": "NA",
                   "enum": [
                     "sinusoidal",
                     "square",
                     "ramp",
                     "pulse",
-                    "arbitrary"
+                    "arbitrary",
+                    "NA"
                   ]
                 },
                 "input_power": {
@@ -190,7 +194,7 @@
                   "description": "Purity level of the gases used (e.g., 99.99% purity)."
                 },
                 "temperature": {
-                  "title": "Temperature [^ \\circ C]",
+                  "title": "Temperature [°C]",
                   "description": "Temperature of the gas during plasma operation.",
                   "type": "number"
                 },
@@ -239,12 +243,14 @@
                   "description": "The distance between the plasma source and the liquid surface."
                 },
                 "stirring": {
-                  "type": "string",
                   "title": "Stirring [yes, no]",
                   "description": "Indicates whether the liquid was stirred during plasma treatment.",
+                  "type": "string",
+                  "default": "NA",
                   "enum": [
                     "yes",
-                    "no"
+                    "no",
+                    "NA"
                   ]
                 },
                 "ph": {
@@ -279,7 +285,7 @@
                   "description": "Free text description of the reactive oxygen and nitrogen species measured in the plasma liquid (e.g., hydroxyl radical, hydrogen peroxide, nitric oxide, nitrite, nitrate)."
                 },
                 "temperature": {
-                  "title": "Temperature [^ \\circ C]",
+                  "title": "Temperature [°C]",
                   "description": "The temperature of the liquid during plasma treatment.",
                   "type": "number"
                 }
@@ -349,7 +355,7 @@
                   "description": "The distance from the plasma source to the target surface."
                 },
                 "surface_temperature": {
-                  "title": "Surface temperature [^ \\circ C]",
+                  "title": "Surface temperature [°C]",
                   "description": "The temperature of the target surface during plasma treatment.",
                   "type": "number"
                 },
@@ -400,9 +406,9 @@
                       "description": ""
                     },
                     "reflection_index": {
-                      "type": "number",
                       "title": "Reflection index [°Brix]",
-                      "description": ""
+                      "description": "",
+                      "type": "number"
                     },
                     "conductivity": {
                       "type": "number",
@@ -618,9 +624,11 @@
                       "title": "Culture type",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "single-culture",
-                        "multi-culture"
+                        "multi-culture",
+                        "NA"
                       ]
                     },
                     "strain_identification": {
@@ -672,7 +680,7 @@
                       "minimum": 0
                     },
                     "incubation_temperature": {
-                      "title": "Incubation temperature [^ \\circ C]",
+                      "title": "Incubation temperature [°C]",
                       "description": "",
                       "type": "number"
                     },
@@ -680,18 +688,22 @@
                       "title": "Growth stage",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "lag phase",
                         "exponential phase",
                         "stationary phase",
-                        "death phase"
+                        "death phase",
+                        "NA"
                       ]
                     },
                     "mode_of_inoculation": {
                       "title": "Mode of inoculation",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
+                        "NA",
                         "spraying",
                         "spotting",
                         "spreading",
@@ -705,12 +717,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
@@ -744,9 +756,11 @@
                       "title": "Culture type",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "single-culture",
-                        "multi-culture"
+                        "multi-culture",
+                        "NA"
                       ]
                     },
                     "strain_identification": {
@@ -798,7 +812,7 @@
                       "minimum": 0
                     },
                     "incubation_temperature": {
-                      "title": "Incubation temperature [^ \\circ C]",
+                      "title": "Incubation temperature [°C]",
                       "description": "",
                       "type": "number"
                     },
@@ -806,18 +820,22 @@
                       "title": "Growth stage",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "lag phase",
                         "exponential phase",
                         "stationary phase",
-                        "death phase"
+                        "death phase",
+                        "NA"
                       ]
                     },
                     "mode_of_inoculation": {
                       "title": "Mode of inoculation",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
+                        "NA",
                         "spraying",
                         "spotting",
                         "spreading",
@@ -831,12 +849,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
@@ -886,9 +904,11 @@
                       "title": "Culture type",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "single-culture",
-                        "multi-culture"
+                        "multi-culture",
+                        "NA"
                       ]
                     },
                     "strain_identification": {
@@ -940,7 +960,7 @@
                       "minimum": 0
                     },
                     "incubation_temperature": {
-                      "title": "Incubation temperature [^ \\circ C]",
+                      "title": "Incubation temperature [°C]",
                       "description": "",
                       "type": "number"
                     },
@@ -948,23 +968,27 @@
                       "title": "Growth stage",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "lag phase",
                         "exponential phase",
                         "stationary phase",
-                        "death phase"
+                        "death phase",
+                        "NA"
                       ]
                     },
                     "mode_of_inoculation": {
                       "title": "Mode of inoculation",
                       "description": "",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "spraying",
                         "spotting",
                         "spreading",
                         "stamping",
-                        "mixing"
+                        "mixing",
+                        "NA"
                       ]
                     },
                     "inoculation_procedure": {
@@ -973,12 +997,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
                       "description": "",
                       "type": "number"
                     },
@@ -991,9 +1015,11 @@
                       "title": "Ascospores or endospores",
                       "description": "Only applicable to molds.",
                       "type": "string",
+                      "default": "NA",
                       "enum": [
                         "ascospores",
-                        "endospores"
+                        "endospores",
+                        "NA"
                       ]
                     }
                   },
@@ -1016,12 +1042,14 @@
               "description": "Object including all attributes defining the methodology followed to treat the target.",
               "properties": {
                 "mode_of_treatment": {
-                  "type": "string",
                   "title": "Mode of treatment [direct, indirect]",
                   "description": "Specifies whether the plasma treatment was applied to the target in direct (UV / VUV irradiation, plasma particles) or indirect (plasma-processed gas / plasma-treated liquid) way.",
+                  "type": "string",
+                  "default": "NA",
                   "enum": [
                     "direct",
-                    "indirect"
+                    "indirect",
+                    "NA"
                   ]
                 },
                 "spatial_location_relative_to_the_plasma_source": {
