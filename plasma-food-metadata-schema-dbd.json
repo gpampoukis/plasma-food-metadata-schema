@@ -1,0 +1,1287 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://raw.githubusercontent.com/plasma-mds/plasma-food-metadata-schema/refs/heads/main/plasma-food-metadata-schema.json#",
+  "title": "Plasma Food Metadata Schema",
+  "description": "Metadata schema to standardize non-thermal plasma decontamination parameters in food-related applications.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "UUID",
+      "description": "System UUID for object identification.",
+      "type": "string"
+    },
+    "url": {
+      "title": "URL",
+      "description": "Landing page (URL) of the dataset.",
+      "type": "string"
+    },
+    "source": {
+      "title": "Plasma Source",
+      "description": "Device which creates the plasma by (partially) ionizing a given medium.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Source Name",
+          "description": "Name and/or type of the plasma source used in the study. Examples: kINPen, COST Jet, CCP.",
+          "type": "string"
+        },
+        "application": {
+          "title": "Source Application",
+          "description": "Application the plasma source is used for. Examples: decontamination, PECVD, etching.",
+          "type": "string"
+        },
+        "specification": {
+          "title": "Source Specification",
+          "description": "Technical specification of the plasma source (waveform, frequency range, pressure range, temperature range).",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Source Properties",
+          "description": "Properties of the plasma source.",
+          "properties": {
+            "geometry_settings": {
+              "title": "Geometry settings",
+              "description": "Object including all attributes defining the configuration of the plasma setup such as the type of plasma device used (e.g., DBD, plasma jet, corona discharge, etc.), its physical shape, structure, dimensions, and materials.",
+              "properties": {
+                "geometry_description": {
+                  "type": "string",
+                  "title": "Geometry description",
+                  "description": "Free text description of the source geometry and materials."
+                },
+                "upper_electrode_diameter": {
+                  "title": "Upper electrode diameter [cm]",
+                  "description": "",
+                  "type": "number"
+                },
+                "ground_electrode_diameter": {
+                  "title": "Ground electrode diameter [cm]",
+                  "description": "",
+                  "type": "number"
+                },
+                "dielectric_barrier_diameter": {
+                  "title": "Dielectric barrier diameter [cm]",
+                  "description": "",
+                  "type": "number"
+                },
+                "dielectric_barrier_thickness": {
+                  "type": "number",
+                  "title": "Dielectric barrier thickness [cm]",
+                  "description": ""
+                },
+                "electrode_distance": {
+                  "type": "number",
+                  "title": "Electrode distance [cm]",
+                  "description": ""
+                },
+                "upper_electrode_material": {
+                  "type": "string",
+                  "title": "Upper electrode material",
+                  "description": ""
+                },
+                "ground_electrode_material": {
+                  "type": "string",
+                  "title": "Ground electrode material",
+                  "description": ""
+                },
+                "dielectric_material": {
+                  "type": "string",
+                  "title": "Dielectric material",
+                  "description": ""
+                }
+              },
+              "type": "object"
+            },
+            "power_supply_settings": {
+              "type": "object",
+              "title": "Power supply settings",
+              "description": "Object including all attributes defining the electrical power supply used in plasma generation.",
+              "properties": {
+                "power_supply": {
+                  "title": "Power supply [AC, DC]",
+                  "description": "The electrical power used to generate the plasma.",
+                  "type": "string",
+                  "default": "NA",
+                  "enum": [
+                    "AC",
+                    "DC",
+                    "NA"
+                  ]
+                },
+                "waveform": {
+                  "title": "Waveform [sinusoidal, square, ramp, pulse, arbitrary]",
+                  "description": "The shape of the electrical signal.",
+                  "type": "string",
+                  "default": "NA",
+                  "enum": [
+                    "sinusoidal",
+                    "square",
+                    "ramp",
+                    "pulse",
+                    "arbitrary",
+                    "NA"
+                  ]
+                },
+                "input_power": {
+                  "type": "number",
+                  "title": "Input power [W]",
+                  "description": "Total power supplied to the plasma system."
+                },
+                "peak_to_peak_discharge_voltage": {
+                  "type": "number",
+                  "title": "Peak-to-peak discharge voltage [kV]",
+                  "description": "The voltage difference between the highest and lowest points of the discharge."
+                },
+                "frequency": {
+                  "type": "number",
+                  "title": "Frequency [kHz]",
+                  "description": "Frequency of the electrical discharge."
+                }
+              }
+            },
+            "source_settings": {
+              "type": "object",
+              "title": "Source settings",
+              "description": "Object including all attributes of the plasma source used to generate the desired plasma.",
+              "properties": {
+                "discharge_current": {
+                  "type": "number",
+                  "title": "Discharge current [A]",
+                  "description": "Current passing through the plasma discharge."
+                },
+                "dissipated_power": {
+                  "type": "number",
+                  "title": "Dissipated power [W]",
+                  "description": "Power actually used by the plasma discharge, excluding losses."
+                },
+                "specific_energy_input": {
+                  "title": "Specific energy input [J/cm³]",
+                  "description": "Energy supplied per unit volume of the treated medium.",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "procedure": {
+          "title": "Source Procedure",
+          "description": "Procedure to prepare and use the plasma source.",
+          "properties": {
+            "standardization_procedures": {
+              "type": "object",
+              "title": "Standardization procedures",
+              "description": "Object including all attributes defining how the plasma source is standardized to ensure consistency across experimental runs.",
+              "properties": {
+                "waiting_time": {
+                  "title": "Waiting time [min]",
+                  "description": "The time needed to reach a stable plasma state before starting the treatment.",
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "properties",
+        "procedure"
+      ]
+    },
+    "medium": {
+      "title": "Plasma Medium",
+      "description": "Gas, mixture of gases, or other substance, which is either (partially) ionized or otherwise activated by a source device.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Medium Name",
+          "description": "Name of the medium the plasma source is operated in. Examples: dry air, Ar, CO2, water.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Medium Properties",
+          "description": "Properties of the medium.",
+          "properties": {
+            "gas_properties": {
+              "type": "object",
+              "title": "Gas properties",
+              "description": "Object including all attributes defining the carrier gas.",
+              "properties": {
+                "gas_description": {
+                  "type": "string",
+                  "title": "Gas description",
+                  "description": "Free text description of the carrier gas."
+                },
+                "pressure": {
+                  "type": "number",
+                  "title": "Pressure [Pa]",
+                  "description": "Pressure of the carrier gas during plasma operation."
+                },
+                "flow_rate": {
+                  "type": "number",
+                  "title": "Flow rate [L/min]",
+                  "description": "The rate at which the gas is supplied to the plasma source."
+                },
+                "carrier_gas_composition": {
+                  "title": "Carrier gas composition",
+                  "description": "The type and composition of the gas mixture used in the plasma (e.g., 90% N₂, 10% O₂).",
+                  "type": "string"
+                },
+                "purity": {
+                  "type": "number",
+                  "title": "Purity [%]",
+                  "description": "Purity level of the gases used (e.g., 99.99% purity)."
+                },
+                "temperature": {
+                  "title": "Temperature [°C]",
+                  "description": "Temperature of the gas during plasma operation.",
+                  "type": "number"
+                },
+                "humidity": {
+                  "type": "number",
+                  "title": "Humidity [% RH]",
+                  "description": "Relative humidity level of the plasma medium."
+                }
+              }
+            },
+            "precursor_properties": {
+              "type": "object",
+              "title": "Precursor properties (where applicable)",
+              "description": "Object including all attributes defining the presence of any precursors or added compounds in the plasma medium.",
+              "properties": {
+                "precursor_description": {
+                  "type": "string",
+                  "title": "Precursor description",
+                  "description": "Free text description of the precursor added in the carrier gas."
+                },
+                "amount_of_precursor": {
+                  "type": "number",
+                  "title": "Amount of precursor added to the medium [ml or g]",
+                  "description": "Quantity of the precursor added to the plasma medium."
+                }
+              }
+            },
+            "liquid_properties": {
+              "type": "object",
+              "title": "Liquid properties (where applicable)",
+              "description": "Object including all attributes defining the plasma-treated liquid.",
+              "properties": {
+                "liquid_description": {
+                  "type": "string",
+                  "title": "Liquid description",
+                  "description": "Free text description of the liquid being treated by the plasma."
+                },
+                "volume": {
+                  "type": "number",
+                  "title": "Volume [L]",
+                  "description": "The volume of the liquid being treated."
+                },
+                "distance": {
+                  "type": "number",
+                  "title": "Distance [cm]",
+                  "description": "The distance between the plasma source and the liquid surface."
+                },
+                "stirring": {
+                  "title": "Stirring [yes, no]",
+                  "description": "Indicates whether the liquid was stirred during plasma treatment.",
+                  "type": "string",
+                  "default": "NA",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "NA"
+                  ]
+                },
+                "ph": {
+                  "type": "number",
+                  "title": "pH",
+                  "description": "The pH level of the liquid before and after treatment."
+                },
+                "oxidation_reduction_potential": {
+                  "title": "Oxidation-reduction potential [mV]",
+                  "description": "The oxidation-reduction potential of the liquid.",
+                  "type": "number"
+                },
+                "minimum_conductivity": {
+                  "type": "number",
+                  "title": "Minimum conductivity [S/m]",
+                  "description": "The minimum electrical conductivity needed for plasma ignition."
+                },
+                "conductivity": {
+                  "type": "number",
+                  "title": "Conductivity [S/m]",
+                  "description": "The electrical conductivity of the liquid."
+                },
+                "treatment_time": {
+                  "title": "Treatment time [min]",
+                  "description": "The duration for which the plasma source was applied to treat the liquid, creating a plasma-treated liquid (PTL) intended for subsequent decontamination purposes.",
+                  "type": "number",
+                  "minimum": 0
+                },
+                "reactive_oxygen_and_nitrogen_species": {
+                  "type": "string",
+                  "title": "Reactive oxygen and nitrogen species",
+                  "description": "Free text description of the reactive oxygen and nitrogen species measured in the plasma liquid (e.g., hydroxyl radical, hydrogen peroxide, nitric oxide, nitrite, nitrate)."
+                },
+                "temperature": {
+                  "title": "Temperature [°C]",
+                  "description": "The temperature of the liquid during plasma treatment.",
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "procedure": {
+          "title": "Medium Procedure",
+          "description": "Standard procedure to prepare the medium (pre-treatment).",
+          "properties": {
+            "medium_treatment": {
+              "type": "object",
+              "title": "Medium treatment",
+              "description": "Object including all attributes defining the plasma medium.",
+              "properties": {
+                "medium_modification": {
+                  "title": "Medium modification (where applicable)",
+                  "description": "The way the medium was modified before the plasma generation (e.g., humidification of the carrier gas).",
+                  "type": "string"
+                },
+                "medium_treatment_time": {
+                  "title": "Medium treatment time (where applicable) [min]",
+                  "description": "The treatment time in which the medium (gas, liquid, or both) is treated by a plasma source that will then be used to treat a target. Only applicable in the indirect mode of treatment.",
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "procedure",
+        "properties"
+      ]
+    },
+    "target": {
+      "title": "Plasma Target",
+      "description": "Substrate the plasma acts on, directly (target is/was in contact with a plasma) or mediated by an additional substance.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Target Name",
+          "description": "Name of the target name the plasma source is acting on either directly or mediated by the above named medium. Examples: Si waver, distilled water, Escherichia coli.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Target Properties",
+          "description": "Properties of the target.",
+          "properties": {
+            "food_related_parameters": {
+              "type": "object",
+              "title": "Food-related parameters",
+              "description": "Object including all attributes defining the food matrix, the packaging material, or the food processing surface being treated.",
+              "properties": {
+                "matrix_description": {
+                  "type": "string",
+                  "title": "Matrix description",
+                  "description": "Free text description of the matrix being treated."
+                },
+                "distance_to_surface": {
+                  "type": "number",
+                  "title": "Distance to surface [cm]",
+                  "description": "The distance from the plasma source to the target surface."
+                },
+                "surface_temperature": {
+                  "title": "Surface temperature [°C]",
+                  "description": "The temperature of the target surface during plasma treatment.",
+                  "type": "number"
+                },
+                "abiotic_surface_related_parameters": {
+                  "title": "Abiotic surface",
+                  "description": "Subschema for food-related parameters of abiotic surfaces (e.g., packaging materials).",
+                  "properties": {
+                    "surface_material": {
+                      "type": "string",
+                      "title": "Surface material",
+                      "description": ""
+                    },
+                    "surface_metrology": {
+                      "type": "string",
+                      "title": "Surface metrology [roughness, waviness in cm]",
+                      "description": ""
+                    },
+                    "dimensions": {
+                      "type": "string",
+                      "title": "Dimensions [e.g., L x W x H or radius, in cm]",
+                      "description": ""
+                    }
+                  },
+                  "type": "object"
+                },
+                "liquid_medium_related_parameters": {
+                  "title": "Liquid medium",
+                  "description": "Subschema for food-related parameters of liquid media (e.g., broths).",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "title": "Type",
+                      "description": ""
+                    },
+                    "volume": {
+                      "type": "number",
+                      "title": "Volume [L]",
+                      "description": ""
+                    },
+                    "salt_content_or_aw": {
+                      "type": "string",
+                      "title": "Salt content [% w/v] or aw",
+                      "description": ""
+                    },
+                    "viscosity": {
+                      "type": "number",
+                      "title": "Viscosity [Pa·s]",
+                      "description": ""
+                    },
+                    "reflection_index": {
+                      "title": "Reflection index [°Brix]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "conductivity": {
+                      "type": "number",
+                      "title": "Conductivity [S/m]",
+                      "description": ""
+                    },
+                    "oxidation-reduction_potential": {
+                      "title": "Oxidation-reduction potential [mV]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "ph": {
+                      "title": "pH",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "commercial_brand": {
+                      "type": "string",
+                      "title": "Commercial brand",
+                      "description": ""
+                    }
+                  },
+                  "type": "object"
+                },
+                "solid_medium_related_parameters": {
+                  "type": "object",
+                  "title": "Solid medium",
+                  "description": "Subschema for food-related parameters of solid media (e.g., agar).",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "title": "Type",
+                      "description": ""
+                    },
+                    "weight": {
+                      "type": "number",
+                      "title": "Weight [g]",
+                      "description": ""
+                    },
+                    "medium_shape": {
+                      "type": "string",
+                      "title": "Medium shape",
+                      "description": ""
+                    },
+                    "dimensions": {
+                      "type": "string",
+                      "title": "Dimensions [e.g., L x W x H or radius, in cm]",
+                      "description": ""
+                    },
+                    "treated_surface_area": {
+                      "type": "number",
+                      "title": "Treated surface area [cm²]",
+                      "description": ""
+                    },
+                    "contact_angle": {
+                      "title": "Contact angle (where applicable) [°]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "salt_contentor_aw": {
+                      "type": "string",
+                      "title": "Salt content [% w/v] or aw",
+                      "description": ""
+                    },
+                    "ph": {
+                      "type": "number",
+                      "title": "pH",
+                      "description": ""
+                    },
+                    "Commercial_brand": {
+                      "type": "string",
+                      "title": "Commercial brand",
+                      "description": ""
+                    }
+                  }
+                },
+                "liquid_food_related_parameters": {
+                  "title": "Liquid food",
+                  "description": "Subschema for food-related parameters of liquid food.",
+                  "properties": {
+                    "volume": {
+                      "type": "number",
+                      "title": "Volume [L]",
+                      "description": ""
+                    },
+                    "salt_content_or_aw": {
+                      "type": "string",
+                      "title": "Salt content [% w/v] or aw",
+                      "description": ""
+                    },
+                    "viscosity": {
+                      "type": "number",
+                      "title": "Viscosity [Pa·s]",
+                      "description": ""
+                    },
+                    "reflection_index": {
+                      "type": "number",
+                      "title": "Reflection index [°Brix]",
+                      "description": ""
+                    },
+                    "conductivity": {
+                      "type": "number",
+                      "title": "Conductivity [S/m]",
+                      "description": ""
+                    },
+                    "oxidation-reduction_potential": {
+                      "type": "number",
+                      "title": "Oxidation-reduction potential [mV]",
+                      "description": ""
+                    },
+                    "ph": {
+                      "type": "number",
+                      "title": "pH",
+                      "description": ""
+                    },
+                    "fat_percentage": {
+                      "type": "number",
+                      "title": "Fat percentage [%]",
+                      "description": ""
+                    },
+                    "protein_content": {
+                      "type": "number",
+                      "title": "Protein content [%]",
+                      "description": ""
+                    },
+                    "density": {
+                      "type": "number",
+                      "title": "Density [kg/m³]",
+                      "description": ""
+                    }
+                  },
+                  "type": "object"
+                },
+                "solid_food_related_parameters": {
+                  "type": "object",
+                  "title": "Solid food",
+                  "description": "Subschema for food-related parameters of solid food.",
+                  "properties": {
+                    "weight": {
+                      "type": "number",
+                      "title": "Weight [g]",
+                      "description": ""
+                    },
+                    "food_shape": {
+                      "type": "string",
+                      "title": "Food shape",
+                      "description": ""
+                    },
+                    "dimensions": {
+                      "type": "string",
+                      "title": "Dimensions [e.g., L x W x H or radius in cm]",
+                      "description": ""
+                    },
+                    "treated_surface_area": {
+                      "type": "number",
+                      "title": "Treated surface area [cm²]",
+                      "description": ""
+                    },
+                    "contact_angle": {
+                      "type": "number",
+                      "title": "Contact angle (where applicable) [°]",
+                      "description": ""
+                    },
+                    "salt_content_or_aw": {
+                      "type": "string",
+                      "title": "Salt content [% w/v] or aw",
+                      "description": ""
+                    },
+                    "ph": {
+                      "type": "number",
+                      "title": "pH",
+                      "description": ""
+                    },
+                    "fat_percentage": {
+                      "type": "number",
+                      "title": "Fat percentage [%]",
+                      "description": ""
+                    },
+                    "protein_content": {
+                      "type": "number",
+                      "title": "Protein content [%]",
+                      "description": ""
+                    }
+                  }
+                }
+              }
+            },
+            "microbial_related_parameters": {
+              "title": "Microbial-related parameters",
+              "description": "Object including all attributes defining the microorganism (vegetative bacteria, bacterial cells / spores in biofilms, yeasts and molds) being treated.",
+              "properties": {
+                "vegetative_bacteria_related_parameters": {
+                  "type": "object",
+                  "title": "Vegetative bacteria",
+                  "description": "Subschema for microbial-related parameters of vegetative bacteria.",
+                  "properties": {
+                    "genus": {
+                      "type": "string",
+                      "title": "Genus",
+                      "description": ""
+                    },
+                    "species": {
+                      "type": "string",
+                      "title": "Species",
+                      "description": ""
+                    },
+                    "serotype": {
+                      "type": "string",
+                      "title": "Serotype",
+                      "description": ""
+                    },
+                    "culture_type": {
+                      "title": "Culture type",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "single-culture",
+                        "multi-culture",
+                        "NA"
+                      ]
+                    },
+                    "strain_identification": {
+                      "title": "Strain identification",
+                      "description": "",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "strain_identifier": {
+                            "title": "Strain identifier",
+                            "description": "",
+                            "type": "string"
+                          },
+                          "strain_identifier_type": {
+                            "type": "string",
+                            "title": "Strain identifier type",
+                            "description": "",
+                            "enum": [
+                              "ATCC",
+                              "DSM",
+                              "NCTC",
+                              "LMG"
+                            ]
+                          }
+                        }
+                      },
+                      "type": "array"
+                    },
+                    "growth_medium_before_treatment": {
+                      "title": "Growth medium before treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "growth_medium_after_treatment": {
+                      "title": "Growth medium after treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "incubation_time_before_treatment": {
+                      "title": "Incubation time before treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_time_after_treatment": {
+                      "title": "Incubation time after treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_temperature": {
+                      "title": "Incubation temperature [°C]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "growth_stage": {
+                      "title": "Growth stage",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "lag phase",
+                        "exponential phase",
+                        "stationary phase",
+                        "death phase",
+                        "NA"
+                      ]
+                    },
+                    "mode_of_inoculation": {
+                      "title": "Mode of inoculation",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "spraying",
+                        "spotting",
+                        "spreading",
+                        "stamping",
+                        "mixing",
+                        "NA"
+                      ]
+                    },
+                    "inoculation_procedure": {
+                      "title": "Inoculation procedure",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "microbial_count_before_treatment": {
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "microbial_count_after_treatment": {
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "enumeration/quantification_procedure": {
+                      "title": "Enumeration/quantification procedure",
+                      "description": "",
+                      "type": "string"
+                    }
+                  }
+                },
+                "bacterial_cells/spores_in_biofilms_related_parameters": {
+                  "title": "Bacterial cells/spores in biofilms",
+                  "description": "Subschema for microbial-related parameters of bacterial cells/spores in biofilms.",
+                  "properties": {
+                    "genus": {
+                      "type": "string",
+                      "title": "Genus",
+                      "description": ""
+                    },
+                    "species": {
+                      "type": "string",
+                      "title": "Species",
+                      "description": ""
+                    },
+                    "serotype": {
+                      "type": "string",
+                      "title": "Serotype",
+                      "description": ""
+                    },
+                    "culture_type": {
+                      "title": "Culture type",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "single-culture",
+                        "multi-culture",
+                        "NA"
+                      ]
+                    },
+                    "strain_identification": {
+                      "title": "Strain identification",
+                      "description": "",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "strain_identifier": {
+                            "title": "Strain identifier",
+                            "description": "",
+                            "type": "string"
+                          },
+                          "strain_identifier_type": {
+                            "type": "string",
+                            "title": "Strain identifier type",
+                            "description": "",
+                            "enum": [
+                              "ATCC",
+                              "DSM",
+                              "NCTC",
+                              "LMG"
+                            ]
+                          }
+                        }
+                      },
+                      "type": "array"
+                    },
+                    "growth_medium_before_treatment": {
+                      "title": "Growth medium before treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "growth_medium_after_treatment": {
+                      "title": "Growth medium after treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "incubation_time_before_treatment": {
+                      "title": "Incubation time before treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_time_after_treatment": {
+                      "title": "Incubation time after treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_temperature": {
+                      "title": "Incubation temperature [°C]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "growth_stage": {
+                      "title": "Growth stage",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "lag phase",
+                        "exponential phase",
+                        "stationary phase",
+                        "death phase",
+                        "NA"
+                      ]
+                    },
+                    "mode_of_inoculation": {
+                      "title": "Mode of inoculation",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "spraying",
+                        "spotting",
+                        "spreading",
+                        "stamping",
+                        "mixing",
+                        "NA"
+                      ]
+                    },
+                    "inoculation_procedure": {
+                      "title": "Inoculation procedure",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "microbial_count_before_treatment": {
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "microbial_count_after_treatment": {
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "enumeration/quantification_method": {
+                      "title": "Enumeration/quantification method",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "biofilm_age": {
+                      "title": "Biofilm age [days]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "biofilm_formation_protocol": {
+                      "title": "Biofilm formation protocol",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "sporulation_protocol": {
+                      "type": "string",
+                      "title": "Sporulation protocol",
+                      "description": ""
+                    }
+                  },
+                  "type": "object"
+                },
+                "yeasts_and_molds_related_parameters": {
+                  "title": "Yeasts and molds",
+                  "description": "Subschema for microbial-related parameters of yeasts and molds.",
+                  "properties": {
+                    "genus": {
+                      "type": "string",
+                      "title": "Genus",
+                      "description": ""
+                    },
+                    "species": {
+                      "type": "string",
+                      "title": "Species",
+                      "description": ""
+                    },
+                    "serotype": {
+                      "type": "string",
+                      "title": "Serotype",
+                      "description": ""
+                    },
+                    "culture_type": {
+                      "title": "Culture type",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "single-culture",
+                        "multi-culture",
+                        "NA"
+                      ]
+                    },
+                    "strain_identification": {
+                      "title": "Strain identification",
+                      "description": "",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "strain_identifier": {
+                            "title": "Strain identifier",
+                            "description": "",
+                            "type": "string"
+                          },
+                          "strain_identifier_type": {
+                            "type": "string",
+                            "title": "Strain identifier type",
+                            "description": "",
+                            "enum": [
+                              "ATCC",
+                              "DSM",
+                              "NCTC",
+                              "LMG"
+                            ]
+                          }
+                        }
+                      },
+                      "type": "array"
+                    },
+                    "growth_medium_before_treatment": {
+                      "title": "Growth medium before treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "growth_medium_after_treatment": {
+                      "title": "Growth medium after treatment",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "incubation_time_before_treatment": {
+                      "title": "Incubation time before treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_time_after_treatment": {
+                      "title": "Incubation time after treatment [h]",
+                      "description": "",
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "incubation_temperature": {
+                      "title": "Incubation temperature [°C]",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "growth_stage": {
+                      "title": "Growth stage",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "lag phase",
+                        "exponential phase",
+                        "stationary phase",
+                        "death phase",
+                        "NA"
+                      ]
+                    },
+                    "mode_of_inoculation": {
+                      "title": "Mode of inoculation",
+                      "description": "",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "spraying",
+                        "spotting",
+                        "spreading",
+                        "stamping",
+                        "mixing",
+                        "NA"
+                      ]
+                    },
+                    "inoculation_procedure": {
+                      "title": "Inoculation procedure",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "microbial_count_before_treatment": {
+                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "microbial_count_after_treatment": {
+                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "description": "",
+                      "type": "number"
+                    },
+                    "enumeration/quantification_method": {
+                      "title": "Enumeration/quantification method",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "ascospores_or_endospores": {
+                      "title": "Ascospores or endospores",
+                      "description": "Only applicable to molds.",
+                      "type": "string",
+                      "default": "NA",
+                      "enum": [
+                        "ascospores",
+                        "endospores",
+                        "NA"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "procedure": {
+          "title": "Target Procedure",
+          "description": "Standard procedure to prepare the target.",
+          "type": "object",
+          "properties": {
+            "target_treatment": {
+              "type": "object",
+              "title": "Target treatment",
+              "description": "Object including all attributes defining the methodology followed to treat the target.",
+              "properties": {
+                "mode_of_treatment": {
+                  "title": "Mode of treatment [direct, indirect]",
+                  "description": "Specifies whether the plasma treatment was applied to the target in direct (UV / VUV irradiation, plasma particles) or indirect (plasma-processed gas / plasma-treated liquid) way.",
+                  "type": "string",
+                  "default": "NA",
+                  "enum": [
+                    "direct",
+                    "indirect",
+                    "NA"
+                  ]
+                },
+                "spatial_location_relative_to_the_plasma_source": {
+                  "title": "Spatial location relative to the plasma source",
+                  "description": "Free text description of the spatial position of the target with respect to the electrodes or the plasma source geometry (how the target is exposed to the plasma medium (UV / VUV irradiation, plasma particles, plasma-processed gas / plasma-treated liquid)).",
+                  "type": "string"
+                },
+                "target_treatment_time": {
+                  "title": "Target treatment time [min]",
+                  "description": "The duration for which the plasma medium was applied to the target matrix. For direct treatments the medium treatment time and the target treatment time match.",
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "properties",
+        "procedure"
+      ]
+    },
+    "diagnostics": {
+      "title": "Diagnostics",
+      "description": "Measurement, modeling, or simulation method used to produce the digital resource.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Diagnostics Name",
+          "description": "Name of the applied diagnostics and/or modelling/simulation methods. Examples: OES, SEM, PIC-MCC.",
+          "type": "string"
+        },
+        "properties": {
+          "title": "Diagnostics Properties",
+          "description": "Details of the applied diagnostics.",
+          "type": "object",
+          "properties": {
+            "diagnostic_settings": {
+              "type": "object",
+              "title": "Diagnostic settings",
+              "description": "Object including all attributes defining the diagnostic method used to assess plasma source-, medium-, or target-related properties.",
+              "properties": {
+                "setting_description": {
+                  "title": "Setting description",
+                  "description": "Free text description of the diagnostic settings (e.g., spectroscopy settings, sensor calibration).",
+                  "type": "string"
+                }
+              }
+            },
+            "environmental_parameters": {
+              "type": "object",
+              "title": "Environmental parameters",
+              "description": "Object including all attributes defining the conditions in the measurement chamber during diagnostics (e.g., humidity, temperature, pressure).",
+              "properties": {
+                "temperature": {
+                  "type": "number",
+                  "title": "Temperature [°C]",
+                  "description": "The temperature of the processing environment."
+                },
+                "humidity": {
+                  "type": "number",
+                  "title": "Humidity [% RH]",
+                  "description": "Relative humidity of the processing environment."
+                },
+                "pressure": {
+                  "type": "number",
+                  "title": "Pressure [Pa]",
+                  "description": "The pressure of the processing environment."
+                }
+              }
+            }
+          }
+        },
+        "procedure": {
+          "title": "Diagnostics Procedure",
+          "description": "Description of the diagnostic procedure.",
+          "type": "object",
+          "properties": {
+            "diagnostic_methodology": {
+              "type": "object",
+              "title": "Diagnostic methodology",
+              "description": "Object including all attributes defining the experimental setup of the diagnostic procedures implemented, such as location, targets, and quantification methods.",
+              "properties": {
+                "methodology_description": {
+                  "title": "Methodology description",
+                  "description": "Free text description of the experimental setup of the diagnostic procedures.",
+                  "type": "string"
+                },
+                "location_of_the_diagnostic_application": {
+                  "title": "Location of the diagnostic application",
+                  "description": "The specific location where the diagnostic method was applied (e.g., on the plasma source, in the plasma medium, on the target).",
+                  "type": "string"
+                },
+                "Targets_of_qualitative_/_quantitative_analysis": {
+                  "title": "Targets of qualitative / quantitative analysis",
+                  "description": "The specific components being analyzed (e.g., reactive species, target surface properties).",
+                  "type": "string"
+                },
+                "quantification_method": {
+                  "type": "string",
+                  "title": "Quantification method",
+                  "description": "The technique used for the quantification of the analytes (e.g., simulation with online databases, calibration curves using standards, machine built-in library, sensor direct output). For direct outputs, the limit of detection (LOD) should be provided."
+                },
+                "h2o2": {
+                  "title": "H₂O₂ [mol/m³]",
+                  "description": "",
+                  "type": "number"
+                },
+                "o3": {
+                  "title": "O₃ [mol/m³]",
+                  "description": "",
+                  "type": "number"
+                },
+                "no": {
+                  "title": "NO [mol/m³]",
+                  "description": "",
+                  "type": "number"
+                },
+                "no2": {
+                  "title": "NO₂ [mol/m³]",
+                  "description": "",
+                  "type": "number"
+                }
+              }
+            },
+            "data_processing": {
+              "type": "object",
+              "title": "Data processing",
+              "description": "Object including all attributes defining how raw data were processed and analyzed.",
+              "properties": {
+                "data_processing_description": {
+                  "type": "string",
+                  "title": "Data processing description",
+                  "description": "Free text description of the data processing and analysis procedures (e.g., spectral deconvolution, data smoothing, software used for data interpretation)."
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "properties",
+        "procedure"
+      ]
+    },
+    "resource": {
+      "title": "Resource",
+      "description": "Digital object obtained by diagnostics",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "UUID",
+            "description": "System UUID for object identification.",
+            "type": "string"
+          },
+          "url": {
+            "title": "URL",
+            "description": "Download link (URL) of the resource.",
+            "type": "string"
+          },
+          "filetype": {
+            "title": "Resource Filetype",
+            "description": "File type of the resource. Examples: csv, pdf, png, txt.",
+            "type": "string"
+          },
+          "datatype": {
+            "title": "Resource Datatype",
+            "description": "Data type of the resource. Examples: data table, SEM image, cfu-plot, high-speed video.",
+            "type": "string"
+          },
+          "range": {
+            "title": "Resource Range",
+            "description": "Range in which the resource is valid. Example: wavelength range: 400-800 nm.",
+            "type": "string"
+          },
+          "quality": {
+            "title": "Resource Quality",
+            "description": "Data quality score. One of: verified, published, reviewed.",
+            "type": "string",
+            "enum": [
+              "verified",
+              "published",
+              "reviewed"
+            ]
+          }
+        }
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}
