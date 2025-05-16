@@ -703,12 +703,12 @@
                       "type": "string",
                       "default": "NA",
                       "enum": [
-                        "NA",
                         "spraying",
                         "spotting",
                         "spreading",
                         "stamping",
-                        "mixing"
+                        "mixing",
+                        "NA"
                       ]
                     },
                     "inoculation_procedure": {
@@ -835,12 +835,12 @@
                       "type": "string",
                       "default": "NA",
                       "enum": [
-                        "NA",
                         "spraying",
                         "spotting",
                         "spreading",
                         "stamping",
-                        "mixing"
+                        "mixing",
+                        "NA"
                       ]
                     },
                     "inoculation_procedure": {
