@@ -717,12 +717,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
@@ -849,12 +849,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
@@ -997,12 +997,12 @@
                       "type": "string"
                     },
                     "microbial_count_before_treatment": {
-                      "title": "Microbial count before treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count before treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
                     "microbial_count_after_treatment": {
-                      "title": "Microbial count after treatment [log_{10} CFU]/(g or ml or cm²)",
+                      "title": "Microbial count after treatment [log_{10} CFU]/(mL, or cm², or g)",
                       "description": "",
                       "type": "number"
                     },
